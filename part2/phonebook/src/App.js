@@ -7,19 +7,30 @@ const App = () => {
   const [ newName, setNewName ] = useState('')
 
   const addPerson = (event) => {
+    const nameList = persons.map(llama => llama.name)
+    console.log(nameList)
     event.preventDefault()
-    const personObject = {
-      name: newName,
-      id: persons.length+1,
-      date: new Date().toISOString(),
+
+    // If Duplicate is Found 
+    if(nameList.indexOf(newName) > -1) {
+      window.alert(`${newName} is already added to phonebook`)
+      setNewName('')
     }
 
-    setPersons(persons.concat(personObject))
-    setNewName('')
+    else {
+      const personObject = {
+        name: newName,
+        id: persons.length + 1,
+        date: new Date().toISOString(),
+      }
+
+      setPersons(persons.concat(personObject))
+      setNewName('')
+    }
+    
   }
 
   const handleNameChange = (event) => {
-    //console.log(event.target.value)
     setNewName(event.target.value)
   }
 
