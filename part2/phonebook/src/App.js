@@ -1,27 +1,7 @@
 import React, { useState } from 'react'
-
-const DisplayName = ({person}) => <div>{person.name} {person.number}</div>
-
-const FilterPerson = ({persons, filter}) => {
-
-  // No filters found
-  if(filter.length === 0) {
-    //console.log('No filter found')
-    return <ul>
-      {persons.map(person => <DisplayName key={person.id} person={person}/>)}
-    </ul>
-  }
-
-  // Function found
-  else {
-    //console.log(`filter:  ${filter}`)
-    let filteredPersons = persons.filter(newList => newList.name.toLowerCase().includes(filter.toLowerCase()))
-    //console.log(filteredPersons)
-    return <ul>
-      {filteredPersons.map(person => <DisplayName key={person.id} person={person}/>)}
-    </ul>
-  }
-}
+import InputChange from './components/InputChange'
+import FilterPerson from './components/FilterPerson'
+import PersonForm from './components/PersonForm'
 
 const App = () => {
   const [ persons, setPersons ] = useState([]) 
@@ -70,22 +50,12 @@ const App = () => {
   }
 
   return (
-    <div>
+    <div> 
       <h2>Phonebook</h2>
-      <div>
-        filter shown with: <input value={newFilter} onChange={handleNewFilter}/>
-      </div>
-      <form onSubmit={addPerson}>
-        <div>
-          name: <input value={newName} onChange={handleNameChange}/>
-        </div>
-        <div>
-          number: <input value={newNumber} onChange={handleNumberChange}/>
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
+      <InputChange text='Filter Shown With: ' value={newFilter} onChange={handleNewFilter} />
+      <h2>Add a New Person</h2>
+      <PersonForm onSubmit={addPerson} newName={newName} handleNameChange={handleNameChange} newNumber={newNumber}
+        handleNumberChange={handleNumberChange} />
       <h2>Numbers</h2>
       <div>
         <FilterPerson persons = {persons} filter={newFilter}/>
