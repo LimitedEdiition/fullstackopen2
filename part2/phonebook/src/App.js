@@ -1,13 +1,22 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import InputChange from './components/InputChange'
 import FilterPerson from './components/FilterPerson'
 import PersonForm from './components/PersonForm'
+import axios from 'axios'
 
 const App = () => {
   const [ persons, setPersons ] = useState([]) 
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
   const [ newFilter, setNewFilter ] = useState('') 
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:3001/persons')
+      .then(response => {
+        setPersons(response.data)
+      })
+  },[])
 
   const addPerson = (event) => {
     const nameList = persons.map(llama => llama.name)
