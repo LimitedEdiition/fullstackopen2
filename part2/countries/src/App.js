@@ -20,10 +20,14 @@ const App = () => {
     setNewFilter(event.target.value)
   }
 
+  const bclick = (country) => {
+    setNewFilter(country)
+  }
+
   return (
     <div> 
       <InputChange text='Find Countries: ' value={newFilter} onChange={handleNewFilter} />
-      <DisplayCountries filter={newFilter} countryList={countries} />
+      <DisplayCountries filter={newFilter} countryList={countries} bclick={bclick}/>
     </div>
   )
 }

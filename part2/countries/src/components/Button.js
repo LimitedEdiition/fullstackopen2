@@ -1,3 +1,3 @@
-const Button = ({text, type}) => <button type={type}>{text}</button>
+const Button = ({text, action}) => <button onClick={action}>{text}</button>
 
 export default Button

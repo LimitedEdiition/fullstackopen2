@@ -1,8 +1,8 @@
 import React from 'react'
-import DisplayList from './DisplayList'
 import DisplayCountry from './DisplayCountry'
+import DisplayCountriesList from './DisplayCountriesList'
 
-const DisplayCountries = ({filter,countryList}) => {
+const DisplayCountries = ({filter,countryList,bclick}) => {
 
   // No filters found
   if(filter.length === 0) {
@@ -23,15 +23,19 @@ const DisplayCountries = ({filter,countryList}) => {
     // More than 1 country but less than 10
     else if(filteredCountries.length > 1) {
       return <ul>
-        {filteredCountries.map(country => <DisplayList key={country.alpha3Code} list={country}/>)}
+        {filteredCountries.map(country => <DisplayCountriesList key={country.alpha3Code} list={country} bclick={bclick}/>)}
       </ul>
     }
 
     // 1 country found
-    else{
+    else if(filteredCountries.length === 1) {
       console.log(filteredCountries)
       return filteredCountries.map(country => <DisplayCountry key={country.alpha3Code} country={country}/>)
       //return <DisplayCountry country={country} />
+    }
+
+    else {
+      return <div>No Match Found!</div>
     }
   }
 
