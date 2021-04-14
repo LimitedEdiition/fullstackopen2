@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import DisplayCountry from './DisplayCountry'
 import DisplayCountriesList from './DisplayCountriesList'
 
@@ -29,7 +29,10 @@ const DisplayCountries = ({filter,countryList,bclick}) => {
 
     // 1 country found
     else if(filteredCountries.length === 1) {
-      console.log(filteredCountries)
+      //console.log(filteredCountries)
+      //let capital = filteredCountries.map(city => city.capital)
+      //console.log(`capital is ${capital}`)
+      //setCity(capital)
       return filteredCountries.map(country => <DisplayCountry key={country.alpha3Code} country={country}/>)
       //return <DisplayCountry country={country} />
     }
