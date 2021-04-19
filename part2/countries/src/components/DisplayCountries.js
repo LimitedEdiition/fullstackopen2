@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react'
 import DisplayCountry from './DisplayCountry'
 import DisplayCountriesList from './DisplayCountriesList'
 
